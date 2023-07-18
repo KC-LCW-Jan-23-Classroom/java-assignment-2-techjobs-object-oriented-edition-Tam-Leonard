@@ -41,6 +41,27 @@ public class JobTest {
         Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertFalse(job1.equals(job2));
     }
-
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        char firstChar = job.toString().charAt(0);
+        char lastChar = job.toString().charAt(job.toString().length() - 1);
+        assertEquals(firstChar, '\n');
+        assertEquals(lastChar, '\n');
+    }
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String expected = '\n' + "ID: " + job.getId() + '\n' + "Name: " + job.getName() + '\n' + "Employer: " + job.getEmployer() + '\n' + "Location: " + job.getLocation() + '\n' + "Position Type: " + job.getPositionType() + '\n' + "Core Competency: " + job.getCoreCompetency() + '\n';
+        String job1 = job.toString();
+        assertEquals(expected, job1);
+    }
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String expected = '\n' + "ID: " + job.getId() + '\n' + "Name: Data not available" + '\n' + "Location: Data not available" + '\n' + "Position Type: Data not available" + '\n' + "CoreCompetency: Data not available" + '\n';
+        String job1 = job.toString();
+        assertEquals(expected, job1);
+    }
 
 }
