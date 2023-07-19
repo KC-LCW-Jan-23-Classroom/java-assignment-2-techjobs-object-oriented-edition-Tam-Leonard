@@ -29,6 +29,24 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
+    @Override
+    public String toString() {
+        if (getName() == "") {
+            setName("Data not available");
+        } if (getEmployer().getValue() == "") {
+            employer.setValue("Data not available");
+        } if (getLocation().getValue() == "") {
+            location.setValue("Data not available");
+        } if (getPositionType().getValue() == "") {
+            positionType.setValue("Data not available");
+        } if (getCoreCompetency().getValue() == "") {
+            coreCompetency.setValue("Data not available");
+        }
+        return ('\n' + "ID: " + id +'\n'+ "Name: " + name + "\n" + "Employer: " +
+                employer + '\n' + "Location: " + location + '\n' + "Position Type: " + positionType + '\n' +
+                "Core Competency: " + coreCompetency + '\n');
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
     @Override
@@ -42,7 +60,6 @@ public class Job {
     public int hashCode() {
         return Objects.hash(getId());
     }
-
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
@@ -89,5 +106,4 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
-
 }
